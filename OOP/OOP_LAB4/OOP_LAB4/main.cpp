@@ -1,22 +1,55 @@
-#define MAC_OS
+//#define MAC_OS
+//#define CYCLE // если нужно сделать управление через цикл
 #include <iostream>
 #include <string>
+#include <time.h>
+#include "GameController.h"
 #ifndef MAC_OS
 #include <conio.h>
 #endif
-#include "Map.h"
-#include "Iterator.h"
-#include "Player.h"
-#include <time.h>
-#include "Loger.h"
-#include "LogPlayer.h"
-#include "Game.h"
 
 using namespace std;
-using namespace Maps;
 using namespace Game;
 
-void Cycle(Map& map);
+#ifdef CYCLE
+void Cycle(GameController* game) {
+    char cmd;
+    while (game->Update()) {
+        // ввод команды
+#ifndef MAC_OS
+        cmd = _getch(); // под винду
+#else
+        cin >> cmd;     // под MacOS
+#endif       
+        // обработка команды
+        switch (cmd) {
+        case 'w':
+        case 'W':
+            game->Up();
+            break;
+        case 's':
+        case 'S':
+            game->Down();
+            break;
+        case 'a':
+        case 'A':
+            game->Left();
+            break;
+        case 'd':
+        case 'D':
+            game->Right();
+            break;
+        case '-':
+            game->EndGame();
+            break;
+        case '=':
+            game->StartNewGame();
+            break;
+        default: cout << "ERROR CMD" << endl;
+        }
+    }
+}
+#endif
 
 int main() {
     srand(time(0));
@@ -36,66 +69,15 @@ int main() {
     }
 
     cout << endl;
-    Map map = *Map::GetInstance(str, col);
-    Cycle(map);
-    return 0;
-}
-
-void Cycle(Map& map) {
-    Game game;
-    while(!game.InGame()){
-        game.Update();
-        switch // ... game.Up()
-    }
-    char cmd;
-    Iterator i(&map);   // итератор позиции игрока
-    Player p(&i);       // игрок (игровая ситуация)
-    LogPlayer playerLog(&p);
-    while (true) {
-#ifndef MAC_OS
-        system("CLS"); // очистка экрана
-#endif
-        // вывод текущей ситуации
-        cout << p << endl;
-
-        // обработка текущей ситуации
-        if (i.Get().GetType() == CellTypes::END)
-            p.TellAboutEndCell();
-        if (p.GetState() == Game::States::WIN) {
-            cout << "WIN!" << endl;
-            break;
-        }
-        else if (p.GetState() == Game::States::DEAD) {
-            cout << "YOU DEAD!" << endl;
-            break;
-        }
-#ifndef MAC_OS
-        cmd = _getch(); // под винду
+#ifndef CYCLE
+    GameController game(str, col);
+    game.StartGameCycle();
 #else
-        cin >> cmd;     // под MacOS
+    GameController *game =new GameController(str, col);
+    Cycle(game);
+    delete game;
 #endif
-        
-
-        switch (cmd) {
-        case 'w':
-        case 'W':
-            i.Up();
-            break;
-        case 's':
-        case 'S':
-            i.Down();
-            break;
-        case 'a':
-        case 'A':
-            i.Left();
-            break;
-        case 'd':
-        case 'D':
-            i.Right();
-            break;
-        default: cout << "ERROR CMD" << endl;
-        }
-    }
-
     cout << "GAME OVER!" << endl;
+    _getch();
+    return 0;
 }

@@ -142,7 +142,7 @@
     <ClCompile Include="AddCoinsCellLogic.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="FailWinEndMapStrattegy.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="HpCellLogic.cpp" />
     <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="KillCellLogic.cpp" />
@@ -159,7 +159,7 @@
     <ClInclude Include="CellTypes.h" />
     <ClInclude Include="EndMapStrattegy.h" />
     <ClInclude Include="FailWinEndMapStrattegy.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="HpCellLogic.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="KillCellLogic.h" />
