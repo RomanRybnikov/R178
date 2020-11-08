@@ -1,0 +1,46 @@
+﻿  AddCoinsCellLogic.cpp
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\AddCoinsCellLogic.cpp(12,38): warning C4244: аргумент: преобразование "double" в "unsigned int", возможна потеря данных
+  Cell.cpp
+  FailWinEndMapStrattegy.cpp
+  Game.cpp
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(4,17): error C2062: тип "int" не требуется
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(4,30): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(4,30): error C2447: {: отсутствует заголовок функции (возможно, используется формальный список старого типа)
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(33,27): error C2601: Game::Game::Up: недопустимые локальные определения функций
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(14): message : эта строка содержит скобку "{", которая пока не имеет парной
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(38,29): error C2601: Game::Game::Down: недопустимые локальные определения функций
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(14): message : эта строка содержит скобку "{", которая пока не имеет парной
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(43,29): error C2601: Game::Game::Left: недопустимые локальные определения функций
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(14): message : эта строка содержит скобку "{", которая пока не имеет парной
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(48,30): error C2601: Game::Game::Right: недопустимые локальные определения функций
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.cpp(14): message : эта строка содержит скобку "{", которая пока не имеет парной
+  HpCellLogic.cpp
+  Iterator.cpp
+  KillCellLogic.cpp
+  Loger.cpp
+  LogPlayer.cpp
+  main.cpp
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(22,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(45,10): error C2872: Game: неоднозначный символ
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.h(7,11): message : может быть "Game"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.h(8,11): message : или       "Game::Game"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(45,14): error C2872: Game: неоднозначный символ
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.h(7,11): message : может быть "Game"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.h(8,11): message : или       "Game::Game"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(45,14): error C2882: Game: недопустимое использование идентификатора пространства имен в выражении
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(45,10): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "game"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(45,10): error C2065: game: необъявленный идентификатор
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(46,12): error C2065: game: необъявленный идентификатор
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(47,9): error C2065: game: необъявленный идентификатор
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(49,5): error C2059: синтаксическая ошибка: }
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(64,12): error C2872: Game: неоднозначный символ
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.h(7,11): message : может быть "Game"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.h(8,11): message : или       "Game::Game"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(68,17): error C2872: Game: неоднозначный символ
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.h(7,11): message : может быть "Game"
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Game.h(8,11): message : или       "Game::Game"
+  Map.cpp
+C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\Map.cpp(99,15): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+  Player.cpp
+  WinEndMapStrattegy.cpp
+  Создание кода...
