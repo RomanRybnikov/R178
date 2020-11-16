@@ -50,25 +50,25 @@ class Tree
 
 	void Parse(std::istream& is)
 	{
-		// î÷èñòêà
+		// Ð¾Ñ‡Ð¸ÑÑ‚ÐºÐ°
 		delete m_Root;
 
-		// ÷èòàåì çíà÷åíèå
+		// Ñ‡Ð¸Ñ‚Ð°ÐµÐ¼ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ
 		T value;
 		is >> value;
 
-		// åñëè ôåéë òî íè÷åãî íåò
+		// ÐµÑÐ»Ð¸ Ñ„ÐµÐ¹Ð» Ñ‚Ð¾ Ð½Ð¸Ñ‡ÐµÐ³Ð¾ Ð½ÐµÑ‚
 		if (is.fail()) return;
 
-		// ñîçäàåì êîðåííîé óçåë
+		// ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ ÐºÐ¾Ñ€ÐµÐ½Ð½Ð¾Ð¹ ÑƒÐ·ÐµÐ»
 		m_Root = new Node(value);
 
-		// âñòàâêà â êîðåíü ïîêà ÷òîòî ÷èòàåòñÿ
+		// Ð²ÑÑ‚Ð°Ð²ÐºÐ° Ð² ÐºÐ¾Ñ€ÐµÐ½ÑŒ Ð¿Ð¾ÐºÐ° Ñ‡Ñ‚Ð¾Ñ‚Ð¾ Ñ‡Ð¸Ñ‚Ð°ÐµÑ‚ÑÑ
 		while (true) {
-			// ÷èòàåì çíà÷åíèå
+			// Ñ‡Ð¸Ñ‚Ð°ÐµÐ¼ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ
 			is >> value;
 			if (is.fail()) return;
-			// âñòàâêà
+			// Ð²ÑÑ‚Ð°Ð²ÐºÐ°
 			m_Root->Add(value);
 		}
 	}
@@ -80,11 +80,11 @@ public:
 	}
 
 	template<typename T1>
-	friend std::ostream& operator << (std::ostream & os, Tree<T1> &t);
+	friend std::ostream& operator << (std::ostream& os, Tree<T1> &t);
 };
 
 template<typename T1>
-std::ostream& operator << (std::ostream & os, Tree<T1> &t) {
+std::ostream& operator<<(std::ostream& os, Tree<T1> &t) {
 	if (!t.m_Root) return os << "()";	
 	return t.m_Root->Print(os);
 }
