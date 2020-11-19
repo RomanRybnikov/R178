@@ -34,6 +34,13 @@ class Tree
 			if (value < m_Value) AddLeft(value);
 			else AddRight(value);
 		}
+		int Count(T value) { // возвращает количество элементов в дереве, представленном текущим узлом
+			int count = 0;
+			if (value == m_Value) count = 1;
+			if (m_Left) count += m_Left->Count(value); // если слева есть узел то прибавляем найденное число слева
+			if (m_Right) count += m_Right->Count(value); // для права
+			return count;
+		}
 
 		std::ostream& Print(std::ostream& os) {
 			os << '(' << m_Value << ' ';
@@ -61,7 +68,7 @@ class Tree
 		if (is.fail()) return;
 
 		// создаем коренной узел
-		m_Root = new Node(value);
+		Add(value);
 
 		// вставка в корень пока чтото читается
 		while (true) {
@@ -69,7 +76,7 @@ class Tree
 			is >> value;
 			if (is.fail()) return;
 			// вставка
-			m_Root->Add(value);
+			Add(value);
 		}
 	}
 
@@ -77,6 +84,15 @@ public:
 	Tree(std::istream& is) {
 		m_Root = 0;
 		Parse(is);
+	}
+
+	int Count(T value) { // сколько раз входит значение в дерево
+		if (!m_Root) return 0;
+		return m_Root->Count(value);
+	}
+	void Add(T value) {
+		if (!m_Root) m_Root = new Node(value);
+		else m_Root->Add(value);
 	}
 
 	template<typename T1>
