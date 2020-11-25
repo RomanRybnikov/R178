@@ -8,38 +8,38 @@
 using namespace std;
 #define TYPEDEF int
 
-void InputNodes(Tree<TYPEDEF> &t) {
+void InputNodes(Tree<TYPEDEF>& t) {
 	cout << "Input nodes:" << endl;
 	bool repeate;
 	TYPEDEF value;
-	cout << "input=";
+	cout << "Do you want input? ";
 	cin >> repeate;
 	while (repeate) {
-		cout << "value=";
+		cout << "new value = ";
 		cin >> value;
 		t.Add(value);
-		cout << "repeate=";
+		cout << "Do you want input? ";
 		cin >> repeate;
 	}
 }
 
-int main(){
-	setlocale(0, "RUS");
+int main() {
 	//stringstream is("4 2 1 3 6 5 7");
-	stringstream is("4 2 6 1 3 5 6");
+	//stringstream is("4 2 6 1 3 5 6 7 8");
+	stringstream is("1 2 3 4 5 6 7 8 9");
+	//stringstream is("");
 
 	//Tree<int> t(cin); 
 	Tree<TYPEDEF> t(is);
-    
-    printf("На вход подается заранее идеальносбалансированное дерево 4 2 1 3 6 5 7");
-	cout << "\nres: " << t << endl;
+
+	//printf("На вход подается заранее идеальносбалансированное дерево 4 2 1 3 6 5 7");
+	cout << "res:\n" << t << endl;
 	InputNodes(t);
-	cout << "\nres: " << t << endl;
+	cout << "res:\n" << t << endl;
 	TYPEDEF value;
-	cout << "value=";
+	cout << "Find element: ";
 	cin >> value;
 	cout << "count of " << value << ": " << t.Count(value) << endl;
 
-	//system("PAUSE");
 	return 0;
 }

@@ -1,2 +1,17 @@
 ﻿  main.cpp
+C:\Users\Konstantin\Documents\R178\Алгоритмы и структуры данных\LB5\LB5\Tree.h(76,2): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Konstantin\Documents\R178\Алгоритмы и структуры данных\LB5\LB5\Tree.h(74): message : во время компиляции функции-члена класс шаблон "std::ostream &Tree<int>::Node::PrintUstup(std::ostream &,unsigned int)"
+C:\Users\Konstantin\Documents\R178\Алгоритмы и структуры данных\LB5\LB5\Tree.h(137): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::ostream &Tree<int>::Node::PrintUstup(std::ostream &,unsigned int)"
+C:\Users\Konstantin\Documents\R178\Алгоритмы и структуры данных\LB5\LB5\Tree.h(125): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Tree<int>::Node"
+C:\Users\Konstantin\Documents\R178\Алгоритмы и структуры данных\LB5\LB5\Tree.h(124): message : во время компиляции функции-члена класс шаблон "void Tree<int>::Add(T)"
+          with
+          [
+              T=int
+          ]
+C:\Users\Konstantin\Documents\R178\Алгоритмы и структуры данных\LB5\LB5\main.cpp(20): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Tree<int>::Add(T)"
+          with
+          [
+              T=int
+          ]
+C:\Users\Konstantin\Documents\R178\Алгоритмы и структуры данных\LB5\LB5\main.cpp(20): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Tree<int>"
   LB5.vcxproj -> C:\Users\Konstantin\Documents\R178\Алгоритмы и структуры данных\LB5\Debug\LB5.exe
