@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cstdlib>
 
 template<typename T>
 class Tree
@@ -17,7 +18,6 @@ class Tree
 			}
 			m_Left = new Node(value);
 			m_Left->m_Parent = this;
-			if(m_Parent) Balanse(m_Parent);
 		}
 		void AddRight(T value) {
 			if (m_Right) {
@@ -26,8 +26,17 @@ class Tree
 			}
 			m_Right = new Node(value);
 			m_Right->m_Parent = this;
-			if (m_Parent) Balanse(m_Parent);
 		}
+		static int GetCount(Node* node) {
+			if (!node) return 0;// если нет узла то 0
+
+			int count = 1; // если узел не 0 то 1 элемент точно есть
+			count += GetCount(node->m_Left); // прибавка того что слева
+			count += GetCount(node->m_Right); // прибавка что там справа
+
+			return count; // выводим сумму
+		}
+
 	public:
 		Node(T value) {
 			m_Value = value;
@@ -47,27 +56,29 @@ class Tree
 			if (m_Right) count += m_Right->Count(value); // для права
 			return count;
 		}
-		int GetHeight(int height = 0) {
-			if (m_Left) {
-				auto lh = m_Left->GetHeight(height + 1);
-				if (lh > height) height = lh;
-			}
-			if (m_Right) {
-				auto rh = m_Right->GetHeight(height + 1);
-				if (rh > height) height = rh;
-			}
-			return height;
+		int Count() {
+			return GetCount(this);
 		}
 		
-		static Node* Balanse(Node* node) { // балансировка узла, возвращает корень дерева
-			std::cout << "b-" << node->m_Value << std::endl;
-			// берем высоты левого и правого поддерева
-			int lh = 0;
-			int rh = 0;
-			if (node->m_Left) lh = node->m_Left->GetHeight(1);
-			if (node->m_Right) rh = node->m_Right->GetHeight(1);
-
-			// 
+		static Node* MakeTree(T* arr, int startIndex, int endIndex) { // создает дерево из сортированного массива. Индексы задаются включительные
+			// ограничитель
+			if (endIndex < startIndex) return 0;
+			// получаем индекс центра
+			int centerIndex = (endIndex + startIndex) / 2;
+			// создаем узел со значением в центре
+			auto node = new Node(arr[centerIndex]);		
+			// формируем левое поддерево
+			node->m_Left = MakeTree(arr, startIndex, centerIndex - 1);
+			// формируем правое поддерево
+			node->m_Right = MakeTree(arr, centerIndex + 1, endIndex);
+			// выводим результат
+			return node;
+		}
+		static void Add(Node* node, T* arr, int& index) {// добавляет в массив значения всего дерева, начиная с индекса index
+			if (!node) return;
+			arr[index++] = node->m_Value;
+			Add(node->m_Left, arr, index);
+			Add(node->m_Right, arr, index);
 		}
 
 		std::ostream& Print(std::ostream& os) {
@@ -95,28 +106,40 @@ class Tree
 
 	Node* m_Root;
 
-	void Parse(std::istream& is)
+	void Parse(std::istream& is) // парсит входной поток и формирует из него дерево (юзается для оператора ввода)
 	{
 		// очистка
 		delete m_Root;
 
-		// читаем значение
-		T value;
-		is >> value;
+		// читаем количество
+		int count;
+		is >> count;
+		if (count == 0) return;
 
-		// если фейл то ничего нет
-		if (is.fail()) return;
+		// создаем массив элементов
+		T* arr = new T[count];
 
-		// создаем коренной узел
-		Add(value);
-
-		// вставка в корень пока чтото читается
-		while (true) {
+		// читаем все значения
+		for (int i = 0; i < count;++i) {
 			// читаем значение
+			T value;
 			is >> value;
-			if (is.fail()) return;
-			// вставка
-			Add(value);
+			// вставка в массив
+			arr[i] = value;
+		}
+
+		// сортировка массива
+		Sort(arr, count);
+
+		// создаем корневой узел из массива
+		m_Root = Node::MakeTree(arr, 0, count - 1);
+	}
+	void Sort(T* arr, int count) {
+		for (int i = 0; i < count - 1; ++i) {
+			int imin = i;
+			for (int j = i + 1; j < count; ++j)
+				if (arr[j] < arr[imin]) imin = j;
+			if (imin != i) std::swap(arr[i], arr[imin]);
 		}
 	}
 public:
@@ -129,9 +152,30 @@ public:
 		if (!m_Root) return 0;
 		return m_Root->Count(value);
 	}
+	int Count() { // сколько всего значений в дереве
+		if (!m_Root) return 0;
+		return m_Root->Count();
+	}
 	void Add(T value) {
-		if (!m_Root) m_Root = new Node(value);
-		else m_Root->Add(value);
+		// создаем массив значений
+		auto count = Count() + 1;
+		auto arr = new T[count];
+
+		// вставка в массив всего существующего
+		int index = 0;
+		Node::Add(m_Root, arr, index);
+
+		// вставка элемента
+		arr[index] = value;
+
+		// сортируем массив
+		Sort(arr, count);
+
+		// удаляем корень
+		delete m_Root;
+
+		// создаем корневой узел из массива
+		m_Root = Node::MakeTree(arr, 0, count - 1);
 	}
 
 	template<typename T1>
@@ -143,7 +187,7 @@ std::ostream& operator<<(std::ostream& os, Tree<T1>& t) {
 	if (!t.m_Root) return os << "()";
 	//return t.m_Root->Print(os);
 	t.m_Root->PrintUstup(os, 0);
-	os << "height=" << t.m_Root->GetHeight();
+	os << "Count=" << t.m_Root->Count();
 	return os;
 }
 

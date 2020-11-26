@@ -24,18 +24,19 @@ void InputNodes(Tree<TYPEDEF>& t) {
 }
 
 int main() {
-	//stringstream is("4 2 1 3 6 5 7");
-	//stringstream is("4 2 6 1 3 5 6 7 8");
-	stringstream is("1 2 3 4 5 6 7 8 9");
-	//stringstream is("");
+	stringstream is("9 7 8 9 4 5 6 1 2 3"); // вначале вводим количество элементов
 
-	//Tree<int> t(cin); 
+	//Tree<TYPEDEF> t(cin);
 	Tree<TYPEDEF> t(is);
 
+	t.Add(10);
+	t.Add(11);
+	t.Add(0);
+
 	//printf("На вход подается заранее идеальносбалансированное дерево 4 2 1 3 6 5 7");
-	cout << "res:\n" << t << endl;
+	cout << "tree:\n" << t << endl;
 	InputNodes(t);
-	cout << "res:\n" << t << endl;
+	cout << "tree:\n" << t << endl;
 	TYPEDEF value;
 	cout << "Find element: ";
 	cin >> value;
