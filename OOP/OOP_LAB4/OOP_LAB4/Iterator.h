@@ -7,6 +7,23 @@
 namespace Maps {
 #define ITERATOR_CHAR 'I'
 
+    class MapPosition {
+        int m_Row;
+        int m_Col;
+    public:
+
+        MapPosition(int row, int col) {
+            m_Row = row;
+            m_Col = col;
+        }
+
+        int GetRow() { return m_Row; }
+        int GetCol() { return m_Col; }
+
+        friend bool operator == (MapPosition& a, MapPosition& b);
+        friend bool operator != (MapPosition& a, MapPosition& b);
+    };
+
     class Map;
     class Iterator { // итератор, который двигается по игровому полю
     public:       
@@ -34,9 +51,11 @@ namespace Maps {
         Iterator& MoveEnd();     // вставть на выход
 
         Cell& Get();
+        MapPosition GetMapPos() { return MapPosition(str, col); }
 
         void AddListener(Listener* listener);
         void RemoveListener(Listener* listener);
+        int Position() { return str; }
 
         friend std::ostream& operator<<(std::ostream& os, Iterator& iterator);
     };

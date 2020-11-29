@@ -7,6 +7,7 @@ namespace Maps {
 
 namespace Game {
 	class EndMapStrattegy;
+	class IEnemy;
 	enum States // состояния игры
 	{
 		IN_GAME,	// играет
@@ -41,6 +42,7 @@ namespace Game {
 		void TellAboutEndCell();	// сказать игроку, что он стоит вконце поля
 
 		Player& operator+(Maps::Cell& cell); // сложение игрока и ячейки(для взаимодействия игрока с ячейкой)
+		Player& operator+(IEnemy& enemy); // оператор сложения игрока и врага
 		friend std::ostream& operator<<(std::ostream& os, Player& player);
 	};
 }

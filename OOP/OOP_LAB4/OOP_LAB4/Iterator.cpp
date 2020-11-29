@@ -4,6 +4,13 @@
 
 using namespace Maps;
 
+bool Maps::operator == (MapPosition& a, MapPosition& b) {
+    return a.m_Row == b.m_Row && a.m_Col == b.m_Col;
+}
+bool Maps::operator != (MapPosition& a, MapPosition& b) {
+    return !(a == b);
+}
+
 Iterator::Iterator(const Map* map) {
     this->map = map;
     this->str = 0;

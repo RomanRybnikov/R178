@@ -25,6 +25,9 @@ void GameController::StartNewGame() {
     m_Player = new Player(m_Iterator);       // игрок (игровая ситуация)
     m_LogPlayer = new LogPlayer(m_Player);
     m_InGame = true;
+    // инициализируем всех врагов
+    for (auto i = m_Enemies.begin(); i != m_Enemies.end(); ++i) // по всем врагам из списка
+        (*i)->Initialize(m_Map, m_Player, m_Iterator); // инициализируем врага
 }
 
 void GameController::EndGame() {
@@ -33,6 +36,11 @@ void GameController::EndGame() {
 
 bool GameController::Update() {
     if (!m_InGame) return false;
+
+    // обработка врагов
+    for (auto i = m_Enemies.begin(); i != m_Enemies.end(); ++i) 
+        (*i)->Update();
+
     // вывод текущей ситуации
 #ifndef MAC_OS
     system("CLS"); // очистка экрана
@@ -112,5 +120,10 @@ void GameController::Left() {
 void GameController::Right() {
     if (!m_InGame) return;
     m_Iterator->Right();
+}
+
+void GameController::AddEnemy(IEnemy* enemy) {
+    enemy->Initialize(m_Map, m_Player, m_Iterator);
+    m_Enemies.push_back(enemy);
 }
 

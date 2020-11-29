@@ -3,6 +3,7 @@
 #include "FailWinEndMapStrattegy.h"
 #include "WinEndMapStrattegy.h"
 #include "EndMapStrattegy.h"
+#include "Enemy.h"
 
 using namespace Game;
 
@@ -22,6 +23,11 @@ void Player::OnMove(Maps::Iterator* iterator) // происходит, когд�
 
 Player& Player::operator+(Maps::Cell& cell) {
 	cell.ApplyPlayer(this);
+	return *this;
+}
+
+Player& Player::operator+(Game::IEnemy& enemy) {
+	enemy.CollideWithPlayer(this);
 	return *this;
 }
 

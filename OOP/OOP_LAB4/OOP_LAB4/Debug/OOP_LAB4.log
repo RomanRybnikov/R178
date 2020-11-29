@@ -1,3 +1,5 @@
-﻿  main.cpp
-C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\OOP_LAB4\main.cpp(55,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+﻿  Iterator.cpp
+  KillCellLogic.cpp
+  WinEndMapStrattegy.cpp
+  Создание кода...
   OOP_LAB4.vcxproj -> C:\Users\Konstantin\Documents\R178\OOP\OOP_LAB4\Debug\OOP_LAB4.exe

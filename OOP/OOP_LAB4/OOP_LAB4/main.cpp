@@ -11,45 +11,12 @@
 using namespace std;
 using namespace Game;
 
-#ifdef CYCLE
-void Cycle(GameController* game) {
-    char cmd;
-    while (game->Update()) {
-        // ввод команды
-#ifndef MAC_OS
-        cmd = _getch(); // под винду
-#else
-        cin >> cmd;     // под MacOS
-#endif       
-        // обработка команды
-        switch (cmd) {
-        case 'w':
-        case 'W':
-            game->Up();
-            break;
-        case 's':
-        case 'S':
-            game->Down();
-            break;
-        case 'a':
-        case 'A':
-            game->Left();
-            break;
-        case 'd':
-        case 'D':
-            game->Right();
-            break;
-        case '-':
-            game->EndGame();
-            break;
-        case '=':
-            game->StartNewGame();
-            break;
-        default: cout << "ERROR CMD" << endl;
-        }
-    }
+void MakeEnemies(GameController& game) {
+    game.AddEnemy(new Enemy<RandomWolker, PlayerKiller>());
+    game.AddEnemy(new Enemy<RandomWolker, CoinsTheaf>());
+    game.AddEnemy(new Enemy<PlayerFinder, PlayerKiller>());
+    game.AddEnemy(new Enemy<PlayerFinder, CoinsTheaf>());
 }
-#endif
 
 int main() {
     srand(time(0));
@@ -69,14 +36,11 @@ int main() {
     }
 
     cout << endl;
-#ifndef CYCLE
+
     GameController game(str, col);
+    MakeEnemies(game);
     game.StartGameCycle();
-#else
-    GameController *game =new GameController(str, col);
-    Cycle(game);
-    delete game;
-#endif
+
     cout << "GAME OVER!" << endl;
     _getch();
     return 0;
