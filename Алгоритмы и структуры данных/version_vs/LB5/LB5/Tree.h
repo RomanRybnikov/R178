@@ -64,13 +64,29 @@ class Tree
 			// ограничитель
 			if (endIndex < startIndex) return 0;
 			// получаем индекс центра
-			int centerIndex = (endIndex + startIndex) / 2;
+			int n = endIndex - startIndex + 1;
+			int centerIndex = startIndex + n / 2;
 			// создаем узел со значением в центре
 			auto node = new Node(arr[centerIndex]);		
 			// формируем левое поддерево
 			node->m_Left = MakeTree(arr, startIndex, centerIndex - 1);
 			// формируем правое поддерево
 			node->m_Right = MakeTree(arr, centerIndex + 1, endIndex);
+			// выводим результат
+			return node;
+		}
+		static Node* MakeTree1(T* arr, int startIndex, int n) { // создает дерево из сортированного массива. Индексы задаются включительные
+			// ограничитель
+			if (n <= 0) return 0;
+			// получаем индекс центра
+			int nl = n / 2;
+			int nr = n - nl - 1;
+			// создаем узел со значением в центре
+			auto node = new Node(arr[startIndex + nl]);
+			// формируем левое поддерево
+			node->m_Left = MakeTree1(arr, startIndex, nl);
+			// формируем правое поддерево
+			node->m_Right = MakeTree1(arr, startIndex + nl + 1, nr);
 			// выводим результат
 			return node;
 		}
@@ -90,15 +106,19 @@ class Tree
 			os << ')';
 			return os;
 		}
-		std::ostream& PrintUstup(std::ostream& os, unsigned int len) {
+		static std::ostream& PrintUstup(Node* node, std::ostream& os, unsigned int len) {
 			// вывод отступа
 			for (int i = 0; i < len; i++) os << '-';
+			// ограничитель
+			if (!node) return  os << "*" << std::endl;
 			// вывод значения
-			os << m_Value << std::endl;
+			os << node->m_Value << std::endl;
+			// ограничитель двойных пустых потомков
+			if (!node->m_Left && !node->m_Right) return os;
 			// лево
-			if (m_Left) m_Left->PrintUstup(os, len + 1);
+			PrintUstup(node->m_Left, os, len + 1);
 			// право
-			if (m_Right) m_Right->PrintUstup(os, len + 1);
+			PrintUstup(node->m_Right, os, len + 1);
 			// вывод результата
 			return os;
 		}
@@ -115,8 +135,7 @@ class Tree
 		int count;
 		is >> count;
         //while(count < 0)
-		if (count == 0) return;
-        
+		if (count == 0) return;        
 
 		// создаем массив элементов
 		T* arr = new T[count];
@@ -134,7 +153,7 @@ class Tree
 		Sort(arr, count);
 
 		// создаем корневой узел из массива
-		m_Root = Node::MakeTree(arr, 0, count - 1);
+		m_Root = Node::MakeTree1(arr, 0, count);
 	}
 	void Sort(T* arr, int count) {
 		for (int i = 0; i < count - 1; ++i) {
@@ -188,7 +207,7 @@ template<typename T1>
 std::ostream& operator<<(std::ostream& os, Tree<T1>& t) {
 	if (!t.m_Root) return os << "()";
 	//return t.m_Root->Print(os);
-	t.m_Root->PrintUstup(os, 0);
+	Tree<T1>::Node::PrintUstup(t.m_Root, os, 0);
 	os << "Count=" << t.m_Root->Count();
 	return os;
 }
