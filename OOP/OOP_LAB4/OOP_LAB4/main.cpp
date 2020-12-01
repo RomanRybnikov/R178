@@ -4,6 +4,8 @@
 #include <string>
 #include <time.h>
 #include "GameController.h"
+#include "RandomWolker.h"
+
 #ifndef MAC_OS
 #include <conio.h>
 #endif
