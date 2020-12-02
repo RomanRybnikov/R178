@@ -26,11 +26,6 @@ Player& Player::operator+(Maps::Cell& cell) {
 	return *this;
 }
 
-Player& Player::operator+(Game::IEnemy& enemy) {
-	enemy.CollideWithPlayer(this);
-	return *this;
-}
-
 double Player::GetCoins() {
 	return m_Coins;
 }

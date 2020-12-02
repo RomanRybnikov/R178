@@ -16,6 +16,7 @@ namespace Game {
         std::list<IEnemy*> m_Enemies;
         int m_Str;
         int m_Col;
+        std::ostream& Print(std::ostream& os);
     public:
         GameController(int str, int col); // чтобы создать карту
         ~GameController();

@@ -45,7 +45,9 @@ bool GameController::Update() {
 #ifndef MAC_OS
     system("CLS"); // очистка экрана
 #endif
-    cout << *m_Player << endl;
+
+    // вывод ситуации
+    Print(std::cout);
 
     // обработка текущей ситуации
     if (m_Iterator->Get().GetType() == Maps::CellTypes::END)
@@ -101,6 +103,42 @@ void GameController::StartGameCycle() {
     }
 }
 #endif
+
+std::ostream& GameController::Print(std::ostream& os) {
+    // вывод текущих данных
+    os << "HEALTH:\t" << m_Player->GetHealth() << std::endl;
+    os << "COINS:\t" << m_Player->GetCoins() << std::endl;
+    // вывод поля
+    for (int i = 0; i < m_Map->GetWidth(); i++) {
+        for (int j = 0; j < m_Map->GetHeight(); j++) {
+            // вывод игрока
+            auto playerPos = m_Iterator->GetMapPos();
+            if (i == playerPos.GetRow() && j == playerPos.GetCol()) {
+                os << ITERATOR_CHAR;
+                os << " ";
+                continue;
+            }
+            // вывод врагов
+            bool cont = false;
+            for (auto iter = m_Enemies.begin(); iter != m_Enemies.end(); ++iter) {
+                auto pos = (*iter)->GetPosition();              
+                if (i == pos.GetRow() && j == pos.GetCol()) {
+                    (*iter)->Print(os);
+                    os << " ";
+                    cont = true;
+                    continue;
+                }
+            }    
+            if (cont) continue;
+            // вывод ячейки
+            os << m_Map->GetCell(i, j);            
+            os << " ";
+        }
+        os << std::endl;
+    }
+
+    return os;
+}
     
 void GameController::Up() {
     if (!m_InGame) return;

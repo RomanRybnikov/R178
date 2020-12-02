@@ -1,35 +1,56 @@
 #pragma once
+#include <iostream>
 #include "Map.h"
 #include "Player.h"
+#include "Iterator.h"
 
 namespace Game {
+	// интерфейс врага (чтобы с ним можно было работать геймконтроллеру)
 	class IEnemy {
+	protected:
+		Maps::MapPosition m_Position;
+		Maps::Map* m_Map;
+		Player* m_Player;
+		Maps::Iterator* m_PlayerPositionIerator;
 	public:
+		IEnemy(){
+			m_Map = 0;
+			m_Player = 0;
+			m_PlayerPositionIerator = 0;
+		}
 		virtual ~IEnemy() {}
-		virtual void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) = 0;
+		virtual void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) { // виртуальная функция меняет свое тело на ту, которая описана в другом классе
+			m_Map = map;
+			m_Player = player;
+			m_PlayerPositionIerator = playerPositionIerator;
+		}
 		virtual void Update() = 0; // обновление логики в основном цикле
-		virtual void CollideWithPlayer(Player* player) = 0; // происходит, при столкновении с игроком
-		virtual Maps::Iterator* GetIterator() = 0; // итератор позиции врага
+		virtual std::ostream& Print(std::ostream& os) = 0;
+
+		Maps::MapPosition GetPosition() { return m_Position; }
+		Maps::MapPosition& SetPosition(Maps::MapPosition position) { m_Position = position; }
 	};
 
-	template<typename TUpdate, typename TCollideWithPlayer>
+	template<typename TWolker, typename TCollideWithPlayer>
 	class Enemy : public IEnemy
 	{
-		TUpdate m_UpdateBehaviour;
-		TCollideWithPlayer m_CollideWithPlayerBehaviour;
+		TWolker m_WolkBehaviour; // тип перемещения
+		TCollideWithPlayer m_CollideWithPlayerBehaviour; // тип действия при встрече с игроком
 	public:
-		virtual void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) {
-			m_UpdateBehaviour.Initialize(map, player, playerPositionIerator);
-			m_CollideWithPlayerBehaviour.Initialize(map, player, playerPositionIerator);
+		void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) {
+			IEnemy::Initialize(map, player, playerPositionIerator); // вызываем инициализацию базового класса
+			m_WolkBehaviour.Initialize(map, player, playerPositionIerator);
+			m_Position = m_WolkBehaviour.GetStartPosition();
 		}
-		virtual void Update() {
-			m_UpdateBehaviour.Update();
+		void Update() { 
+			// меняем позицию
+			m_Position = m_WolkBehaviour + m_Position;
+			// проверяем наличие столкновения с игроком
+			if (m_PlayerPositionIerator->GetMapPos() == m_Position)
+				m_CollideWithPlayerBehaviour + *m_Player;
 		}
-		virtual Maps::Iterator* GetIterator() {
-			return m_UpdateBehaviour->GetIterator();
-		}
-		virtual void CollideWithPlayer(Player *player) { 
-			m_CollideWithPlayerBehaviour.CollideWithPlayer(player);
+		std::ostream& Print(std::ostream& os) {
+			return m_CollideWithPlayerBehaviour.Print(os);
 		}
 	};
 }

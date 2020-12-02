@@ -54,9 +54,6 @@
     <ClCompile Include="GameController.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="RandomWolker.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddCoinsCellLogic.h">
@@ -104,7 +101,7 @@
     <ClInclude Include="Enemy.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="RandomWolker.h">
+    <ClInclude Include="EnemyBehaviours.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

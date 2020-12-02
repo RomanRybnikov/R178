@@ -11,7 +11,10 @@ namespace Maps {
         int m_Row;
         int m_Col;
     public:
-
+        MapPosition() {
+            m_Row = 0;
+            m_Col = 0;
+        }
         MapPosition(int row, int col) {
             m_Row = row;
             m_Col = col;
@@ -19,9 +22,11 @@ namespace Maps {
 
         int GetRow() { return m_Row; }
         int GetCol() { return m_Col; }
+        int SetRow(int value) { return m_Row = value; }
+        int SetCol(int value) { return m_Col = value; }
 
-        friend bool operator == (MapPosition& a, MapPosition& b);
-        friend bool operator != (MapPosition& a, MapPosition& b);
+        friend bool operator == (MapPosition a, MapPosition b);
+        friend bool operator != (MapPosition a, MapPosition b);
     };
 
     class Map;

@@ -27,6 +27,9 @@ namespace Maps {
         Map(Map&& object);             // c.move(явно описанный *исправление*)
         ~Map();
         void GetMap();
+        int GetWidth() { return width; }
+        int GetHeight() { return height; }
+        Cell& GetCell(int row, int col) { return ArrMap[row][col]; }
     };
 }
 

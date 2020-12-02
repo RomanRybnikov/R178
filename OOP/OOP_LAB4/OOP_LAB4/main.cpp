@@ -4,7 +4,7 @@
 #include <string>
 #include <time.h>
 #include "GameController.h"
-#include "RandomWolker.h"
+#include "EnemyBehaviours.h"
 
 #ifndef MAC_OS
 #include <conio.h>
@@ -16,8 +16,8 @@ using namespace Game;
 void MakeEnemies(GameController& game) {
     game.AddEnemy(new Enemy<RandomWolker, PlayerKiller>());
     game.AddEnemy(new Enemy<RandomWolker, CoinsTheaf>());
-    game.AddEnemy(new Enemy<PlayerFinder, PlayerKiller>());
-    game.AddEnemy(new Enemy<PlayerFinder, CoinsTheaf>());
+    game.AddEnemy(new Enemy<MoveToPlayer, PlayerKiller>());
+    game.AddEnemy(new Enemy<MoveToPlayer, CoinsTheaf>());
 }
 
 int main() {

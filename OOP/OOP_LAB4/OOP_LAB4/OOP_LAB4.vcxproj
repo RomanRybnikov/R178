@@ -151,7 +151,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RandomWolker.cpp" />
     <ClCompile Include="WinEndMapStrattegy.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +168,7 @@
     <ClInclude Include="LogPlayer.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="RandomWolker.h" />
+    <ClInclude Include="EnemyBehaviours.h" />
     <ClInclude Include="WinEndMapStrattegy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
