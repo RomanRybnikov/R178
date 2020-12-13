@@ -3,12 +3,18 @@
 #include "Map.h"
 
 namespace Game {
+#define RandomWolker_ID 1;
+#define MoveToPlayer_ID 2;
+#define PlayerKiller_ID 3;
+#define CoinsTheaf_ID 4;
+
 	// передвигает врага в случайную точку
 	class RandomWolker
 	{
 		Maps::Map* m_Map;
 
 	public:
+		int Id() { return RandomWolker_ID; }
 		void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) { // вызывается вначале игры
 			m_Map = map;
 		}
@@ -44,6 +50,7 @@ namespace Game {
 		Maps::Iterator* m_PlayerPositionIerator;
 
 	public:
+		int Id() { return MoveToPlayer_ID; }
 		void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) {
 			m_Map = map;
 			m_PlayerPositionIerator = playerPositionIerator;
@@ -80,6 +87,7 @@ namespace Game {
 	class PlayerKiller
 	{
 	public:
+		int Id() { return PlayerKiller_ID; }
 		PlayerKiller& operator+(Player& player) {
 			player.SetState(States::DEAD);
 			return *this;
@@ -91,6 +99,7 @@ namespace Game {
 	class CoinsTheaf
 	{
 	public:
+		int Id() { return CoinsTheaf_ID; }
 		CoinsTheaf& operator+(Player& player) {
 			player.SetCoins(0);
 			return *this;

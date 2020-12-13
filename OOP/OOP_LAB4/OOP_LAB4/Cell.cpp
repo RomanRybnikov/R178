@@ -45,4 +45,11 @@ void Cell::ApplyPlayer(Game::Player* player) // функция взаимоде�
     if (m_Logic == 0) return;
     m_Logic->ApplyPlayer(player);
 }
+void Cell::SaveLogic(Cell& cell, std::ostream& os)
+{
+    auto logic = cell.GetLogic();
+    if (logic) logic->Output(os);
+    else os << "_";       
+    os << ' ';
+}
 

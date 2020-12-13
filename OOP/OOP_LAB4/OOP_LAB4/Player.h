@@ -42,6 +42,8 @@ namespace Game {
 
 		Player& operator+(Maps::Cell& cell); // сложение игрока и ячейки(для взаимодействия игрока с ячейкой)
 		friend std::ostream& operator<<(std::ostream& os, Player& player);
+
+		void Save(std::ostream& os);
 	};
 }
 

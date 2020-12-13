@@ -1,9 +1,13 @@
-#define MAC_OS
+//#define MAC_OS
 #include "GameController.h"
 #include <iostream>
+#include "Saver.h"
+#include "Loader.h"
 #ifndef MAC_OS
 #include <conio.h>
 #endif
+
+#define SAVE_FILE_NAME "save.txt"
 
 using namespace std;
 using namespace Game;
@@ -96,6 +100,12 @@ void GameController::StartGameCycle() {
         case '=':
             StartNewGame();
             break;
+        case 'k':
+            Save();
+            break;
+        case 'l':
+            Load();
+            break;
         default: cout << "ERROR CMD" << endl;
         }
     }
@@ -161,5 +171,37 @@ void GameController::Right() {
 void GameController::AddEnemy(IEnemy* enemy) {
     enemy->Initialize(m_Map, m_Player, m_Iterator);
     m_Enemies.push_back(enemy);
+}
+
+void GameController::Save() {
+    Saver saver(SAVE_FILE_NAME);
+    auto& stream = saver.Stream();
+    // пишем сигнатуру
+    stream << 123 << std::endl;
+    // сохраняем игру
+    stream << m_InGame << std::endl;
+    // сохраняем игрока
+    m_Player->Save(stream);
+    // размер карты
+    stream << m_Str << ' ' << m_Col << std::endl;
+    // карта
+    for (int i = 0; i < m_Map->GetHeight(); ++i) {
+        for (int j = 0; j < m_Map->GetWidth(); ++j) {
+            auto cell = m_Map->GetCell(i, j);
+            stream << cell.GetType() << ' ';
+            Cell::SaveLogic(cell, stream);
+        }
+        stream << std::endl;
+    }
+    // сохраняем врагов
+    stream << m_Enemies.size() << std::endl;
+    for (auto i = m_Enemies.begin(); i != m_Enemies.end(); ++i) 
+        (*i)->Save(stream);    
+}
+
+void GameController::Load()
+{
+    Loader loader(SAVE_FILE_NAME);
+    loader.Stream() >> m_InGame;
 }
 

@@ -18,7 +18,7 @@ namespace Maps {
     class Cell {
     public:
         class ILogic { // интерфейс логики ячейки
-        public:
+        public:         
             virtual void ApplyPlayer(Game::Player* player) = 0;       // применить логику к игроку
             virtual std::ostream& Output(std::ostream& os) = 0; // выводит логику в поток
         };
@@ -39,6 +39,8 @@ namespace Maps {
         void ApplyPlayer(Game::Player* player); // функция взаимодействия ячейки с игроком
 
         friend std::ostream& operator << (std::ostream& os, Cell& cell);
+
+        static void SaveLogic(Cell& cell, std::ostream& os);
     };
 }
 

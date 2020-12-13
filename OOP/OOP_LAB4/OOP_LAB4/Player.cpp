@@ -67,6 +67,17 @@ double Player::SetHealth(double health) {
 	return m_Health;
 }
 
+void Player::Save(std::ostream& os)
+{
+	// позиция
+	auto playerPos = GetIterator().GetMapPos();
+	os << playerPos.GetRow() << ' ' << playerPos.GetCol() << ' ';
+	os << m_State << ' ';
+	os << m_Coins << ' ';
+	os << m_Health << ' ';
+	os << m_EndMapStrattegy->Id() << std::endl;
+}
+
 namespace Game {
 	std::ostream& operator<<(std::ostream& os, Player& player)
 	{

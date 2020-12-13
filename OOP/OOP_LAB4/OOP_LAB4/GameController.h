@@ -28,6 +28,8 @@ namespace Game {
         void StartNewGame();
         void EndGame();
         void AddEnemy(IEnemy* enemy);
+        void Save();
+        void Load();
 #ifndef CYCLE
         void StartGameCycle();
 #endif

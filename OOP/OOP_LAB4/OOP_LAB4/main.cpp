@@ -1,4 +1,4 @@
-#define MAC_OS
+//#define MAC_OS
 //#define CYCLE // если нужно сделать управление через цикл
 #include <iostream>
 #include <string>
