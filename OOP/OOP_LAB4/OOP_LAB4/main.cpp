@@ -1,4 +1,4 @@
-//#define MAC_OS
+#define MAC_OS
 //#define CYCLE // если нужно сделать управление через цикл
 #include <iostream>
 #include <string>
@@ -14,10 +14,10 @@ using namespace std;
 using namespace Game;
 
 void MakeEnemies(GameController& game) {
-    game.AddEnemy(new Enemy<RandomWolker, PlayerKiller>());
-    game.AddEnemy(new Enemy<RandomWolker, CoinsTheaf>());
+    //game.AddEnemy(new Enemy<RandomWolker, PlayerKiller>());
+    //game.AddEnemy(new Enemy<RandomWolker, CoinsTheaf>());
     game.AddEnemy(new Enemy<MoveToPlayer, PlayerKiller>());
-    game.AddEnemy(new Enemy<MoveToPlayer, CoinsTheaf>());
+    //game.AddEnemy(new Enemy<MoveToPlayer, CoinsTheaf>());
 }
 
 int main() {
@@ -44,6 +44,8 @@ int main() {
     game.StartGameCycle();
 
     cout << "GAME OVER!" << endl;
+#ifndef MAC_OS
     _getch();
+#endif
     return 0;
 }

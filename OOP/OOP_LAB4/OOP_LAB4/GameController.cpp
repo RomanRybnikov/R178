@@ -1,6 +1,6 @@
+#define MAC_OS
 #include "GameController.h"
 #include <iostream>
-
 #ifndef MAC_OS
 #include <conio.h>
 #endif
@@ -15,9 +15,7 @@ GameController::GameController(int str, int col) {
     StartNewGame();
 }
 
-GameController::~GameController() {
-
-}
+GameController::~GameController() {}
 
 void GameController::StartNewGame() {
     m_Map = Map::GetInstance(m_Str, m_Str);

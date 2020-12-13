@@ -3,24 +3,24 @@
 #include "Map.h"
 
 namespace Game {
-	// передвигает врага в случайную точку
+	// РїРµСЂРµРґРІРёРіР°РµС‚ РІСЂР°РіР° РІ СЃР»СѓС‡Р°Р№РЅСѓСЋ С‚РѕС‡РєСѓ
 	class RandomWolker
 	{
 		Maps::Map* m_Map;
 
 	public:
-		void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) { // вызывается вначале игры
+		void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) { // РІС‹Р·С‹РІР°РµС‚СЃСЏ РІРЅР°С‡Р°Р»Рµ РёРіСЂС‹
 			m_Map = map;
 		}
 
-		Maps::MapPosition GetStartPosition() { // начальная позиция
+		Maps::MapPosition GetStartPosition() { // РЅР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ
 			return Maps::MapPosition(rand() % m_Map->GetHeight(), rand() % m_Map->GetWidth());
 		}
 
-		Maps::MapPosition operator+(Maps::MapPosition position) { // берет текущее положение и возвращает новое
-			// запоминаем позицию
+		Maps::MapPosition operator+(Maps::MapPosition position) { // Р±РµСЂРµС‚ С‚РµРєСѓС‰РµРµ РїРѕР»РѕР¶РµРЅРёРµ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРІРѕРµ
+			// Р·Р°РїРѕРјРёРЅР°РµРј РїРѕР·РёС†РёСЋ
 			auto newPos = position;
-			// смещаемся рандомно
+			// СЃРјРµС‰Р°РµРјСЃСЏ СЂР°РЅРґРѕРјРЅРѕ
 			switch (rand()%4)
 			{
 			case 0: newPos.SetRow(newPos.GetRow() + 1); break;
@@ -28,15 +28,16 @@ namespace Game {
 			case 2: newPos.SetCol(newPos.GetCol() + 1); break;
 			case 3: newPos.SetCol(newPos.GetCol() - 1); break;
 			}
-			// если сместились нетуда то откат
+			// РµСЃР»Рё СЃРјРµСЃС‚РёР»РёСЃСЊ РЅРµС‚СѓРґР° С‚Рѕ РѕС‚РєР°С‚
 			if (newPos.GetCol() < 0 || newPos.GetRow() < 0 ||
 				newPos.GetCol() >= m_Map->GetHeight() || newPos.GetRow() >= m_Map->GetWidth()) 
 				return position;
-			// если все ок
+			// РµСЃР»Рё РІСЃРµ РѕРє
 			return newPos;
 		}
 	};
-	// двигает врага к игроку
+
+	// РґРІРёРіР°РµС‚ РІСЂР°РіР° Рє РёРіСЂРѕРєСѓ
 	class MoveToPlayer
 	{
 		Maps::Map* m_Map;
@@ -53,19 +54,29 @@ namespace Game {
 		}
 
 		Maps::MapPosition operator+(Maps::MapPosition position) {
-			// запоминаем позицию
+			// Р·Р°РїРѕРјРёРЅР°РµРј РїРѕР·РёС†РёСЋ
 			auto newPos = position;
 			auto playerPos = m_PlayerPositionIerator->GetMapPos();
-			// смещаемся рандомно
-			if (position.GetRow() < playerPos.GetRow()) position.SetRow(position.GetRow() + 1);
-			else if (position.GetRow() > playerPos.GetRow()) position.SetRow(position.GetRow() - 1);
-			else if (position.GetCol() < playerPos.GetCol()) position.SetCol(position.GetCol() + 1);
-			else if (position.GetCol() > playerPos.GetCol()) position.SetCol(position.GetCol() - 1);
-			// если все ок
+			// СЃРјРµС‰Р°РµРјСЃСЏ СЂР°РЅРґРѕРјРЅРѕ
+			if (position.GetRow() < playerPos.GetRow())
+                position.SetRow(position.GetRow() + 1);
+            
+			else if (position.GetRow() > playerPos.GetRow())
+                position.SetRow(position.GetRow() - 1);
+            
+			else if (position.GetCol() < playerPos.GetCol())
+                position.SetCol(position.GetCol() + 1);
+            
+			else if (position.GetCol() > playerPos.GetCol())
+                position.SetCol(position.GetCol() - 1);
+            
+			// РµСЃР»Рё РІСЃРµ РѕРє
 			return position;
 		}
 	};
-	// убивает врага при встрече
+
+
+	// СѓР±РёРІР°РµС‚ РІСЂР°РіР° РїСЂРё РІСЃС‚СЂРµС‡Рµ
 	class PlayerKiller
 	{
 	public:
@@ -74,7 +85,7 @@ namespace Game {
 			return *this;
 		}
 		std::ostream&  Print(std::ostream& os) {
-			return os<<"+";
+			return os<<"K";
 		}
 	};
 	class CoinsTheaf
@@ -85,7 +96,7 @@ namespace Game {
 			return *this;
 		}
 		std::ostream& Print(std::ostream& os) {
-			return os << "-";
+			return os << "T";
 		}
 	};
 }
