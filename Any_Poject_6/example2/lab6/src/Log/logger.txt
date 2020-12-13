@@ -1,0 +1,160 @@
+[23:00:04] Element created by coordinates: X: 1, Y: 10(KeyItem).
+[23:00:04] Element created by coordinates: X: 5, Y: 10(KeyItem).
+[23:00:04] Element created by coordinates: X: 10, Y: 0(KeyItem).
+[23:00:04] Element created by coordinates: X: 1, Y: 7(HeartItem).
+[23:00:04] Element created by coordinates: X: 3, Y: 0(HeartItem).
+[23:00:04] Element created by coordinates: X: 8, Y: 3(HeartItem).
+[23:00:04] Element created by coordinates: X: 5, Y: 3(ChestItem).
+[23:00:04] Element created by coordinates: X: 8, Y: 6(ChestItem).
+[23:00:04] Element created by coordinates: X: 8, Y: 9(ChestItem).
+[23:00:04] Element created by coordinates: X: 7, Y: 7(ChestItem).
+[23:00:04] The enemy spawned by coordinates: X:0, Y:6(BeatEnemy).
+[23:00:04] The enemy spawned by coordinates: X:4, Y:8(RobEnemy).
+[23:00:04] The enemy spawned by coordinates: X:10, Y:2(TPEnemy).
+[23:00:04] The hero moved to the cell with coordinates: Y: 0, X: 1.
+[23:00:04] The enemy moved to the cell with coordinates: X: 10, Y: 3(TPEnemy).
+[23:00:04] The enemy moved to the cell with coordinates: X: 0, Y: 7(BeatEnemy).
+[23:00:04] The enemy moved to the cell with coordinates: X: 4, Y: 9(RobEnemy).
+[23:00:04] The hero moved to the cell with coordinates: Y: 1, X: 1.
+[23:00:04] The enemy moved to the cell with coordinates: X: 10, Y: 4(TPEnemy).
+[23:00:04] The enemy moved to the cell with coordinates: X: 0, Y: 8(BeatEnemy).
+[23:00:04] The enemy moved to the cell with coordinates: X: 4, Y: 10(RobEnemy).
+[23:00:06] Element created by coordinates: X: 3, Y: 0(HeartItem).
+[23:00:06] Element created by coordinates: X: 8, Y: 3(HeartItem).
+[23:00:06] Element created by coordinates: X: 1, Y: 7(HeartItem).
+[23:00:06] Element created by coordinates: X: 10, Y: 0(KeyItem).
+[23:00:06] Element created by coordinates: X: 1, Y: 10(KeyItem).
+[23:00:06] Element created by coordinates: X: 5, Y: 10(KeyItem).
+[23:00:06] Element created by coordinates: X: 1, Y: 1(ChestItem).
+[23:00:06] Element created by coordinates: X: 4, Y: 2(ChestItem).
+[23:00:06] Element created by coordinates: X: 4, Y: 3(ChestItem).
+[23:00:06] Element created by coordinates: X: 8, Y: 5(ChestItem).
+[23:00:06] Info about hero: 0 OpenedChests, 0 Keys, 5 Health.Hero position: X: 1, Y: 3
+[23:00:06] The enemy spawned by coordinates: X: 0, Y: 10(BeatEnemy).
+[23:00:06] The enemy spawned by coordinates: X: 10, Y: 6(TPEnemy).
+[23:00:06] The enemy spawned by coordinates: X: 4, Y: 8(RobûEnemy).
+[23:00:06] Last Save Loaded.
+[23:00:07] The hero moved to the cell with coordinates: Y: 3, X: 2.
+[23:00:07] The enemy moved to the cell with coordinates: X: 10, Y: 7(TPEnemy).
+[23:00:07] The enemy moved to the cell with coordinates: X: 0, Y: 9(BeatEnemy).
+[23:00:07] The enemy moved to the cell with coordinates: X: 4, Y: 9(RobEnemy).
+[23:00:07] The hero moved to the cell with coordinates: Y: 4, X: 2.
+[23:00:07] The enemy moved to the cell with coordinates: X: 10, Y: 8(TPEnemy).
+[23:00:07] The enemy moved to the cell with coordinates: X: 0, Y: 8(BeatEnemy).
+[23:00:07] The enemy moved to the cell with coordinates: X: 4, Y: 10(RobEnemy).
+[23:00:08] The hero moved to the cell with coordinates: Y: 5, X: 2.
+[23:00:08] The enemy moved to the cell with coordinates: X: 10, Y: 9(TPEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 0, Y: 7(BeatEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 4, Y: 9(RobEnemy).
+[23:00:08] The hero moved to the cell with coordinates: Y: 5, X: 3.
+[23:00:08] The enemy moved to the cell with coordinates: X: 10, Y: 10(TPEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 0, Y: 6(BeatEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 4, Y: 8(RobEnemy).
+[23:00:08] The hero moved to the cell with coordinates: Y: 5, X: 4.
+[23:00:08] The enemy moved to the cell with coordinates: X: 10, Y: 9(TPEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 0, Y: 5(BeatEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 4, Y: 7(RobEnemy).
+[23:00:08] The hero moved to the cell with coordinates: Y: 5, X: 5.
+[23:00:08] The enemy moved to the cell with coordinates: X: 10, Y: 8(TPEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 0, Y: 4(BeatEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 4, Y: 6(RobEnemy).
+[23:00:08] The hero moved to the cell with coordinates: Y: 5, X: 6.
+[23:00:08] The enemy moved to the cell with coordinates: X: 10, Y: 7(TPEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 0, Y: 3(BeatEnemy).
+[23:00:08] The enemy moved to the cell with coordinates: X: 4, Y: 5(RobEnemy).
+[23:00:09] The hero moved to the cell with coordinates: Y: 6, X: 6.
+[23:00:09] The enemy moved to the cell with coordinates: X: 10, Y: 6(TPEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 0, Y: 2(BeatEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 4, Y: 4(RobEnemy).
+[23:00:09] The hero moved to the cell with coordinates: Y: 7, X: 6.
+[23:00:09] The enemy moved to the cell with coordinates: X: 10, Y: 5(TPEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 0, Y: 1(BeatEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 4, Y: 3(RobEnemy).
+[23:00:09] The hero moved to the cell with coordinates: Y: 7, X: 7.
+[23:00:09] The enemy moved to the cell with coordinates: X: 10, Y: 4(TPEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 0, Y: 0(BeatEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 4, Y: 2(RobEnemy).
+[23:00:09] The hero moved to the cell with coordinates: Y: 7, X: 8.
+[23:00:09] The enemy moved to the cell with coordinates: X: 10, Y: 3(TPEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 0, Y: 1(BeatEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 4, Y: 1(RobEnemy).
+[23:00:09] The hero moved to the cell with coordinates: Y: 6, X: 8.
+[23:00:09] The enemy moved to the cell with coordinates: X: 10, Y: 2(TPEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 0, Y: 2(BeatEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 4, Y: 0(RobEnemy).
+[23:00:09] The hero moved to the cell with coordinates: Y: 5, X: 8.
+[23:00:09] The enemy moved to the cell with coordinates: X: 10, Y: 3(TPEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 0, Y: 3(BeatEnemy).
+[23:00:09] The enemy moved to the cell with coordinates: X: 4, Y: 1(RobEnemy).
+[23:00:09] Game Saved.
+[23:00:10] The hero moved to the cell with coordinates: Y: 6, X: 8.
+[23:00:10] The enemy moved to the cell with coordinates: X: 10, Y: 4(TPEnemy).
+[23:00:10] The enemy moved to the cell with coordinates: X: 0, Y: 4(BeatEnemy).
+[23:00:10] The enemy moved to the cell with coordinates: X: 4, Y: 2(RobEnemy).
+[23:00:10] The hero moved to the cell with coordinates: Y: 7, X: 8.
+[23:00:10] The enemy moved to the cell with coordinates: X: 10, Y: 5(TPEnemy).
+[23:00:10] The enemy moved to the cell with coordinates: X: 0, Y: 5(BeatEnemy).
+[23:00:10] The enemy moved to the cell with coordinates: X: 4, Y: 3(RobEnemy).
+[23:00:10] The hero moved to the cell with coordinates: Y: 7, X: 7.
+[23:00:10] The enemy moved to the cell with coordinates: X: 10, Y: 6(TPEnemy).
+[23:00:10] The enemy moved to the cell with coordinates: X: 0, Y: 6(BeatEnemy).
+[23:00:10] The enemy moved to the cell with coordinates: X: 4, Y: 4(RobEnemy).
+[23:00:11] The hero moved to the cell with coordinates: Y: 7, X: 6.
+[23:00:11] The enemy moved to the cell with coordinates: X: 10, Y: 7(TPEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 0, Y: 7(BeatEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 4, Y: 5(RobEnemy).
+[23:00:11] The hero moved to the cell with coordinates: Y: 6, X: 6.
+[23:00:11] The enemy moved to the cell with coordinates: X: 10, Y: 8(TPEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 0, Y: 8(BeatEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 4, Y: 6(RobEnemy).
+[23:00:11] The hero moved to the cell with coordinates: Y: 5, X: 6.
+[23:00:11] The enemy moved to the cell with coordinates: X: 10, Y: 9(TPEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 0, Y: 9(BeatEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 4, Y: 7(RobEnemy).
+[23:00:11] The hero moved to the cell with coordinates: Y: 5, X: 5.
+[23:00:11] The enemy moved to the cell with coordinates: X: 10, Y: 10(TPEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 0, Y: 10(BeatEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 4, Y: 8(RobEnemy).
+[23:00:11] The hero moved to the cell with coordinates: Y: 4, X: 5.
+[23:00:11] The enemy moved to the cell with coordinates: X: 10, Y: 9(TPEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 0, Y: 9(BeatEnemy).
+[23:00:11] The enemy moved to the cell with coordinates: X: 4, Y: 9(RobEnemy).
+[23:00:12] The hero moved to the cell with coordinates: Y: 4, X: 4.
+[23:00:12] The enemy moved to the cell with coordinates: X: 10, Y: 8(TPEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 0, Y: 8(BeatEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 4, Y: 10(RobEnemy).
+[23:00:12] The hero moved to the cell with coordinates: Y: 3, X: 4.
+[23:00:12] The enemy moved to the cell with coordinates: X: 10, Y: 7(TPEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 0, Y: 7(BeatEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 4, Y: 9(RobEnemy).
+[23:00:12] The hero moved to the cell with coordinates: Y: 2, X: 4.
+[23:00:12] The enemy moved to the cell with coordinates: X: 10, Y: 6(TPEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 0, Y: 6(BeatEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 4, Y: 8(RobEnemy).
+[23:00:12] The hero moved to the cell with coordinates: Y: 1, X: 4.
+[23:00:12] The enemy moved to the cell with coordinates: X: 10, Y: 5(TPEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 0, Y: 5(BeatEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 4, Y: 7(RobEnemy).
+[23:00:12] The hero moved to the cell with coordinates: Y: 0, X: 4.
+[23:00:12] The enemy moved to the cell with coordinates: X: 10, Y: 4(TPEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 0, Y: 4(BeatEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 4, Y: 6(RobEnemy).
+[23:00:12] The hero moved to the cell with coordinates: Y: 0, X: 3.
+[23:00:12] The enemy moved to the cell with coordinates: X: 10, Y: 3(TPEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 0, Y: 3(BeatEnemy).
+[23:00:12] The enemy moved to the cell with coordinates: X: 4, Y: 5(RobEnemy).
+[23:00:12] Element created by coordinates: X: 3, Y: 0(HeartItem).
+[23:00:12] Element created by coordinates: X: 8, Y: 3(HeartItem).
+[23:00:12] Element created by coordinates: X: 1, Y: 7(HeartItem).
+[23:00:12] Element created by coordinates: X: 10, Y: 0(KeyItem).
+[23:00:12] Element created by coordinates: X: 1, Y: 10(KeyItem).
+[23:00:12] Element created by coordinates: X: 5, Y: 10(KeyItem).
+[23:00:12] Element created by coordinates: X: 1, Y: 1(ChestItem).
+[23:00:12] Element created by coordinates: X: 4, Y: 2(ChestItem).
+[23:00:12] Element created by coordinates: X: 4, Y: 3(ChestItem).
+[23:00:12] Element created by coordinates: X: 8, Y: 5(ChestItem).
+[23:00:12] Info about hero: 0 OpenedChests, 0 Keys, 5 Health.Hero position: X: 8, Y: 5
+[23:00:12] The enemy spawned by coordinates: X: 0, Y: 3(BeatEnemy).
+[23:00:13] The enemy spawned by coordinates: X: 10, Y: 3(TPEnemy).
+[23:00:13] The enemy spawned by coordinates: X: 4, Y: 1(RobûEnemy).
+[23:00:13] Last Save Loaded.
