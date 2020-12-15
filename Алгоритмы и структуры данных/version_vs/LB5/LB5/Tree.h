@@ -59,7 +59,7 @@ class Tree
 		int Count() {
 			return GetCount(this);
 		}
-		
+
 		static Node* MakeTree(T* arr, int startIndex, int endIndex) { // создает дерево из сортированного массива. Индексы задаются включительные
 			// ограничитель
 			if (endIndex < startIndex) return 0;
@@ -67,7 +67,7 @@ class Tree
 			int n = endIndex - startIndex + 1;
 			int centerIndex = startIndex + n / 2;
 			// создаем узел со значением в центре
-			auto node = new Node(arr[centerIndex]);		
+			auto node = new Node(arr[centerIndex]);
 			// формируем левое поддерево
 			node->m_Left = MakeTree(arr, startIndex, centerIndex - 1);
 			// формируем правое поддерево
@@ -128,20 +128,21 @@ class Tree
 
 	void Parse(std::istream& is) // парсит входной поток и формирует из него дерево (юзается для оператора ввода)
 	{
+		std::cout << "ОЛОЛО!!!ололо" << std::endl;
 		// очистка
 		delete m_Root;
 
 		// читаем количество
 		int count;
 		is >> count;
-        //while(count < 0)
-		if (count == 0) return;        
+		//while(count < 0)
+		if (count == 0) return;
 
 		// создаем массив элементов
 		T* arr = new T[count];
 
 		// читаем все значения
-		for (int i = 0; i < count;++i) {
+		for (int i = 0; i < count; ++i) {
 			// читаем значение
 			T value;
 			is >> value;
@@ -164,9 +165,8 @@ class Tree
 		}
 	}
 public:
-	Tree(std::istream& is) {
+	Tree() {
 		m_Root = 0;
-		Parse(is);
 	}
 
 	int Count(T value) { // сколько раз входит значение в дерево
@@ -197,10 +197,54 @@ public:
 
 		// создаем корневой узел из массива
 		m_Root = Node::MakeTree(arr, 0, count - 1);
+
+		// удаляем служебный массив
+		delete[] arr;
+	}
+	void Remove(T value) {
+		// создаем массив значений
+		auto count = Count();
+		auto arr = new T[count];
+
+		// вставка в массив всего существующего
+		int index = 0;
+		Node::Add(m_Root, arr, index);
+
+		// ищем индекс удаляемого элемента
+		index = -1;
+		for (int i = 0; i < count; ++i) {
+			if (arr[i] == value) {
+				index = i;
+				break;
+			}
+		}
+		if (index < 0) {
+			delete[] arr;
+			return;
+		}
+
+		// удаление элемента
+		for (int i = index; i < count - 1; ++i) 
+			arr[i] = arr[i + 1];
+		--count;
+
+		// сортируем массив
+		Sort(arr, count);
+
+		// удаляем корень
+		delete m_Root;
+
+		// создаем корневой узел из массива
+		m_Root = Node::MakeTree(arr, 0, count - 1);
+
+		// удаляем служебный массив
+		delete[] arr;
 	}
 
 	template<typename T1>
 	friend std::ostream& operator << (std::ostream& os, Tree<T1>& t);
+	template<typename T1>
+	friend std::istream& operator >> (std::istream& is, Tree<T1>& t);
 };
 
 template<typename T1>
@@ -210,5 +254,10 @@ std::ostream& operator<<(std::ostream& os, Tree<T1>& t) {
 	Tree<T1>::Node::PrintUstup(t.m_Root, os, 0);
 	os << "Count=" << t.m_Root->Count();
 	return os;
+}
+template<typename T1>
+std::istream& operator >> (std::istream& is, Tree<T1>& t) {
+	t.Parse(is);
+	return is;
 }
 

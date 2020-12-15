@@ -6,33 +6,41 @@
 #include "Tree.h"
 
 using namespace std;
-#define TYPEDEF char
+#define TYPEDEF int
+
 
 void InputNodes(Tree<TYPEDEF>& t) {
 	cout << "Output items" << endl << endl;
+	//cout << "Добавление элементов (0 - нет, 1 - да)" << endl << endl;
 	bool repeate;
 	TYPEDEF value;
 	cout << "Do you want to input items? ";
+	//cout << "Хотите ввести новый элемент = ";
 	cin >> repeate;
 	while (repeate) {
 		cout << "New item = ";
+		//cout << "Новый элемент = ";
 		cin >> value;
-		
+
 		t.Add(value);
-		cout << "Do you want to input item? ";
+		cout << "Do you want to input items? ";
+		//cout << "Хотите ввести новый элемент? ";
 		cin >> repeate;
 	}
 }
 
 int main() {
-	//setlocale(0, "rus");
+	setlocale(LC_ALL, "rus");
 	//stringstream is("9 9 8 7 6 5 4 3 2 1"); // вначале вводим количество элементов
-	//stringstream is("9 11 10 9 8 7 6 5 4 3");
+	stringstream is("9 11 10 9 8 7 6 5 4 3");
 	//stringstream is("9 a b c d e f g h i");
-	stringstream is("0");
+	//stringstream is("");
 	//Tree<TYPEDEF> t(cin);
-	Tree<TYPEDEF> t(is);	
+	Tree<TYPEDEF> t;
+	is >> t;
+	//cin >> t;
 
+	/*
 	t.Add('a');
 	t.Add('b');
 	t.Add('c');
@@ -42,15 +50,33 @@ int main() {
 	t.Add('g');
 	t.Add('h');
 	t.Add('i');
+	 */
 
-	//printf("На вход подается заранее идеальносбалансированное дерево 4 2 1 3 6 5 7");
-	cout << "tree:\n" << t << endl;
-	InputNodes(t);
-	cout << "tree:\n" << t << endl;
+	/*t.Remove(11);
+	t.Remove(3);
+	t.Remove(4);
+	t.Remove(5);
+	t.Remove(7);
+	t.Remove(8);
+	t.Remove(9);
+	t.Remove(11);
+	t.Remove(10);
+	t.Remove(10);
+	t.Remove(6);*/
+
+	 //cout << "Входные данные:\n" << "11 10 9 8 7 6 5 4 3" << endl << endl;
+	 //cout << "Входные данные:\n" << "9 8 7 6 5 4 3 2 1" << endl << endl;
+	 //cout << "Входные данные:\n" << "a b c d e f g h i" << endl << endl;
+	 //cout << "Входные данные:\n" << "9 1 2 5 6 3" << endl << endl;
+	//cout << "tree:\n" << t << endl << endl;
+	//InputNodes(t);
+	cout << "tree:\n" << t << endl << endl;
 	TYPEDEF value;
 	cout << "Find item ";
+	//cout << "Какой найти элемент?: ";
 	cin >> value;
 	cout << "items count " << value << ": " << t.Count(value) << endl;
+	//cout << "Количество найденных элементов " << value << ": " << t.Count(value) << endl;
 
 	return 0;
 }
