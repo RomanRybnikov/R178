@@ -8,6 +8,7 @@
 #endif
 
 #define SAVE_FILE_NAME "save.txt"
+#define FILE_SIGNATURE 123
 
 using namespace std;
 using namespace Game;
@@ -29,7 +30,7 @@ void GameController::StartNewGame() {
     m_InGame = true;
     // инициализируем всех врагов
     for (auto i = m_Enemies.begin(); i != m_Enemies.end(); ++i) // по всем врагам из списка
-        (*i)->Initialize(m_Map, m_Player, m_Iterator); // инициализируем врага
+        (*i)->Initialize(m_Map, m_Player, m_Iterator, true); // инициализируем врага
 }
 
 void GameController::EndGame() {
@@ -104,7 +105,25 @@ void GameController::StartGameCycle() {
             Save();
             break;
         case 'l':
-            Load();
+            try {
+                Load();
+            }
+            catch (const char* msg) {
+                std::cout << "ERROR: " << msg << std::endl;
+#ifndef MAC_OS
+                cmd = _getch(); // под винду
+#else
+                cin >> cmd;     // под MacOS
+#endif  
+            }
+            catch (...) {
+                std::cout << "UNKNOWN ERROR" << std::endl;
+#ifndef MAC_OS
+                cmd = _getch(); // под винду
+#else
+                cin >> cmd;     // под MacOS
+#endif  
+            }
             break;
         default: cout << "ERROR CMD" << endl;
         }
@@ -169,7 +188,7 @@ void GameController::Right() {
 }
 
 void GameController::AddEnemy(IEnemy* enemy) {
-    enemy->Initialize(m_Map, m_Player, m_Iterator);
+    enemy->Initialize(m_Map, m_Player, m_Iterator, true);
     m_Enemies.push_back(enemy);
 }
 
@@ -177,22 +196,15 @@ void GameController::Save() {
     Saver saver(SAVE_FILE_NAME);
     auto& stream = saver.Stream();
     // пишем сигнатуру
-    stream << 123 << std::endl;
+    stream << FILE_SIGNATURE << std::endl;
     // сохраняем игру
     stream << m_InGame << std::endl;
     // сохраняем игрока
     m_Player->Save(stream);
-    // размер карты
+    // размер карты в настройках игры
     stream << m_Str << ' ' << m_Col << std::endl;
     // карта
-    for (int i = 0; i < m_Map->GetHeight(); ++i) {
-        for (int j = 0; j < m_Map->GetWidth(); ++j) {
-            auto cell = m_Map->GetCell(i, j);
-            stream << cell.GetType() << ' ';
-            Cell::SaveLogic(cell, stream);
-        }
-        stream << std::endl;
-    }
+    m_Map->Save(stream);
     // сохраняем врагов
     stream << m_Enemies.size() << std::endl;
     for (auto i = m_Enemies.begin(); i != m_Enemies.end(); ++i) 
@@ -202,6 +214,29 @@ void GameController::Save() {
 void GameController::Load()
 {
     Loader loader(SAVE_FILE_NAME);
-    loader.Stream() >> m_InGame;
+    // сигнатура
+    auto& stream = loader.Stream();
+    int signature;
+    stream >> signature;
+    if (signature != FILE_SIGNATURE) throw "bad signature - file format is incorrect";
+    // игра
+    stream >> m_InGame;
+    // игрок
+    m_Player->Load(stream);
+    // настройки размера
+    stream >> m_Str >> m_Col;
+    // карта
+    m_Map->Load(stream);
+    // враги
+    for (auto i = m_Enemies.begin(); i != m_Enemies.end(); ++i)
+        delete* i;
+    m_Enemies.clear();
+    int enemyCount;
+    stream >> enemyCount;
+    for (int i = 0; i < enemyCount; ++i) {
+        auto enemy = Game::IEnemy::Load(stream);
+        enemy->Initialize(m_Map, m_Player, m_Iterator, false);
+        m_Enemies.push_back(enemy);
+    }
 }
 

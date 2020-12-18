@@ -4,6 +4,7 @@
 #include "WinEndMapStrattegy.h"
 #include "EndMapStrattegy.h"
 #include "Enemy.h"
+#include "EndMapStrattegy.h"
 
 using namespace Game;
 
@@ -69,13 +70,32 @@ double Player::SetHealth(double health) {
 
 void Player::Save(std::ostream& os)
 {
-	// позиция
 	auto playerPos = GetIterator().GetMapPos();
 	os << playerPos.GetRow() << ' ' << playerPos.GetCol() << ' ';
 	os << m_State << ' ';
 	os << m_Coins << ' ';
 	os << m_Health << ' ';
 	os << m_EndMapStrattegy->Id() << std::endl;
+}
+void Player::Load(std::istream& is) {
+	// позиция
+	int row, col;
+	is >> row >> col;
+	GetIterator().SetMapPos(Maps::MapPosition(row, col));
+	// состояние
+	int stateId;
+	is >> stateId >> m_Coins >> m_Health;
+	if (stateId < 0 || stateId > 2) throw "unknown player state id";
+	m_State = (Game::States)stateId;
+	// страттегия конца
+	int endMapStrattegyId;
+	is >> endMapStrattegyId; // читаем ID типа
+	if (m_EndMapStrattegy) delete m_EndMapStrattegy;
+	switch (endMapStrattegyId) { // по прочитанному ID типа создаем нужную страттегию
+	case FailWinEndMapStrattegy_ID: m_EndMapStrattegy = new FailWinEndMapStrattegy(); break;
+	case WinEndMapStrattegy_ID: m_EndMapStrattegy = new WinEndMapStrattegy(); break;
+	default: throw "unknown player end map strattegy id";
+	}
 }
 
 namespace Game {

@@ -1,8 +1,9 @@
 #pragma once
 
+#define FailWinEndMapStrattegy_ID 1
+#define WinEndMapStrattegy_ID 2
+
 namespace Game {
-#define FailWinEndMapStrattegy_ID 1;
-#define WinEndMapStrattegy_ID 2;
 	class Player;
 	class EndMapStrattegy {	// страттегия нажатия на ячейку конца
 	public:

@@ -44,6 +44,7 @@ namespace Game {
 		friend std::ostream& operator<<(std::ostream& os, Player& player);
 
 		void Save(std::ostream& os);
+		void Load(std::istream& is);
 	};
 }
 

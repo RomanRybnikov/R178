@@ -4,6 +4,10 @@
 #include "Player.h"
 #include "Iterator.h"
 
+#define RandomWolker_ID 1
+#define MoveToPlayer_ID 2
+#define PlayerKiller_ID 3
+#define CoinsTheaf_ID 4
 
 namespace Game {
 	// интерфейс врага (чтобы с ним можно было работать геймконтроллеру)
@@ -20,7 +24,7 @@ namespace Game {
 			m_PlayerPositionIterator = 0;
 		}
 		virtual ~IEnemy() {}
-		virtual void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) { // виртуальная функция меняет свое тело на ту, которая описана в другом классе
+		virtual void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator, bool randomPosition) { // виртуальная функция меняет свое тело на ту, которая описана в другом классе
 			m_Map = map;
 			m_Player = player;
 			m_PlayerPositionIterator = playerPositionIerator;
@@ -28,6 +32,8 @@ namespace Game {
 		virtual void Update() = 0; // обновление логики в основном цикле
 		virtual std::ostream& Print(std::ostream& os) = 0;
 		virtual void Save(std::ostream& os) = 0;
+
+		static IEnemy* Load(std::istream& is);
 
 		Maps::MapPosition GetPosition() { return m_Position; }
         Maps::MapPosition& SetPosition(Maps::MapPosition position) { return m_Position = position; }
@@ -39,10 +45,17 @@ namespace Game {
 		TWolker m_WolkBehaviour; // тип перемещения
 		TCollideWithPlayer m_CollideWithPlayerBehaviour; // тип действия при встрече с игроком
 	public:
-		void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator) {
-			IEnemy::Initialize(map, player, playerPositionIerator); // вызываем инициализацию базового класса
+		Enemy() {}
+		Enemy(std::istream& is) {
+			int row, col;
+			is >> row >> col;
+			m_Position.SetRow(row);
+			m_Position.SetCol(col);
+		}
+		void Initialize(Maps::Map* map, Player* player, Maps::Iterator* playerPositionIerator, bool randomPosition) {
+			IEnemy::Initialize(map, player, playerPositionIerator, randomPosition); // вызываем инициализацию базового класса
 			m_WolkBehaviour.Initialize(map, player, playerPositionIerator);
-			m_Position = m_WolkBehaviour.GetStartPosition();
+			if (randomPosition) m_Position = m_WolkBehaviour.GetStartPosition();
 		}
 		void Update() { 
 			// меняем позицию

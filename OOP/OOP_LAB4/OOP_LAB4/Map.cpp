@@ -149,6 +149,26 @@ Map& Map::operator=(const Map&& map) {                // operator move
     return *this;
 }
 
+void Map::Save(std::ostream& os) {
+    os << width << ' ' << height << std::endl;
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            GetCell(i, j).Save(os);
+        }
+        os << std::endl;
+    }
+}
+void Map::Load(std::istream& is) {
+    Clear();
+    is >> width >> height;
+    ArrMap = new Cell* [width];
+    for (int i = 0; i < width; i++) ArrMap[i] = new Cell[height];
+    
+    for (int i = 0; i < height; i++)
+        for (int j = 0; j < width; j++)
+            ArrMap[i][j].Load(is);     
+}
+
 
 
 

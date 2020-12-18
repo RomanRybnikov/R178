@@ -3,10 +3,6 @@
 #include "Map.h"
 
 namespace Game {
-#define RandomWolker_ID 1;
-#define MoveToPlayer_ID 2;
-#define PlayerKiller_ID 3;
-#define CoinsTheaf_ID 4;
 
 	// передвигает врага в случайную точку
 	class RandomWolker

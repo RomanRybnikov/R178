@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="AddCoinsCellLogic.cpp" />
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FailWinEndMapStrattegy.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Saver.cpp" />

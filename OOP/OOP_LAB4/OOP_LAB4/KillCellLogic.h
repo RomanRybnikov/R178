@@ -8,6 +8,7 @@ namespace Maps {
 	public:
 		virtual void ApplyPlayer(Game::Player* player); // применить логику к игроку
 		virtual std::ostream& Output(std::ostream& os); // выводит логику в поток
+		virtual void Save(std::ostream& os) { os << KILL_CELL_LOGIC_ID << ' '; }
 	};
 }
 

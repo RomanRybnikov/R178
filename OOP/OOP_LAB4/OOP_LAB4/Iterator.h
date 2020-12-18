@@ -57,10 +57,13 @@ namespace Maps {
 
         Cell& Get();
         MapPosition GetMapPos() { return MapPosition(str, col); }
+        void SetMapPos(MapPosition pos) { 
+            str = pos.GetRow();
+            col = pos.GetCol();
+        }
 
         void AddListener(Listener* listener);
         void RemoveListener(Listener* listener);
-        int Position() { return str; }
 
         friend std::ostream& operator<<(std::ostream& os, Iterator& iterator);
     };

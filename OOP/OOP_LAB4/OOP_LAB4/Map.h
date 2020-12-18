@@ -30,6 +30,9 @@ namespace Maps {
         int GetWidth() { return width; }
         int GetHeight() { return height; }
         Cell& GetCell(int row, int col) { return ArrMap[row][col]; }
+
+        void Save(std::ostream& os);
+        void Load(std::istream& os);
     };
 }
 
