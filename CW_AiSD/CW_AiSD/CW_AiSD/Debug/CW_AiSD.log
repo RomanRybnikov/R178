@@ -1,0 +1,17 @@
+﻿  main.cpp
+C:\Users\Konstantin\Documents\R178\CW_AiSD\CW_AiSD\CW_AiSD\Tree.h(153,2): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Konstantin\Documents\R178\CW_AiSD\CW_AiSD\CW_AiSD\Tree.h(151): message : во время компиляции функции-члена класс шаблон "std::ostream &Tree<int>::Node::PrintUstup(Tree<int>::Node *,std::ostream &,unsigned int)"
+C:\Users\Konstantin\Documents\R178\CW_AiSD\CW_AiSD\CW_AiSD\Tree.h(112): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::ostream &Tree<int>::Node::PrintUstup(Tree<int>::Node *,std::ostream &,unsigned int)"
+C:\Users\Konstantin\Documents\R178\CW_AiSD\CW_AiSD\CW_AiSD\Tree.h(324): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Tree<int>::Node"
+C:\Users\Konstantin\Documents\R178\CW_AiSD\CW_AiSD\CW_AiSD\Tree.h(312): message : во время компиляции функции-члена класс шаблон "void Tree<int>::Remove(T)"
+          with
+          [
+              T=int
+          ]
+C:\Users\Konstantin\Documents\R178\CW_AiSD\CW_AiSD\CW_AiSD\main.cpp(43): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Tree<int>::Remove(T)"
+          with
+          [
+              T=int
+          ]
+C:\Users\Konstantin\Documents\R178\CW_AiSD\CW_AiSD\CW_AiSD\main.cpp(25): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Tree<int>"
+  CW_AiSD.vcxproj -> C:\Users\Konstantin\Documents\R178\CW_AiSD\CW_AiSD\Debug\CW_AiSD.exe
