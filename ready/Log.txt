@@ -1,0 +1,13 @@
+HP:	100
+SCORES:	94
+1 T       D     $   
+                  D 
+D       D T         
+        $ T         
+  T                 
+  D T     $         
+            D $ X   
+        T           
+                  T 
+    D D T         2 
+========
