@@ -22,16 +22,19 @@ struct Item {	// один элемент столешницы
 };
 
 std::list<Item> GetRes(int N); // поиск результата
-void PutItem(bool** table, int N, std::list<Item>& list, std::list<Item>& res); // попытка добавить еще один итем в текущую раскладку
+bool PutItem(Item item, bool** table, int N, std::list<Item>& list, std::list<Item>& res, int nMax); // попытка добавить еще один итем в текущую раскладку
 void Add(bool** table, std::list<Item>& list, Item item); // добавляет указанный обрезок в раскладку
 void RemoveLast(bool** table, std::list<Item>& list); // удаляет последний элемент из раскладки
 void ShowTable(bool** table, int N); // вывод таблицы на экран (для дебага)
+bool IsFull(bool** table, int N); // заполнена ли таблица
+bool CanAdd(bool** table, int N, Item item); // можно ли добавить указанный итем в таблицу
+bool GetFirstEmpty(bool** table, int N, Position &position); // возвращает первую свободную позицию
 
 int main() {
 	// ввод данных
 	int N;
 #if _DEBUG
-	N = 7;
+	N = 8;
 #else
 	std::cout << "N=";
 	std::cin >> N;
@@ -63,9 +66,11 @@ std::list<Item> GetRes(int N) { // решает задачу
 			table[i][j] = false;
 	}
 
-	// поиск результата
-	list.push_back(Item(1, 1, 1));
-	PutItem(table, N, list, res);
+	// поиск результата (вставкой всех возможных плиток вначало)
+	for (int i = 1; i < N - 1; ++i) {
+		int nMax = N - i;
+		PutItem(Item(0, 0, i), table, N, list, res, nMax);
+	}
 
 	// удаляем доску
 	for (auto i = 0; i < N; ++i) delete[] table[i];
@@ -74,26 +79,68 @@ std::list<Item> GetRes(int N) { // решает задачу
 	// вывод результата
 	return res;
 }
-void PutItem(bool** table, int N, std::list<Item>& list, std::list<Item>& res) // попытка добавить еще один итем в текущую раскладку
+bool PutItem(Item item, bool** table, int N, std::list<Item>& list, std::list<Item>& res,int nMax) // попытка добавить еще один итем в текущую раскладку
 {
-	// берем первое свободное место
-	/*Position emptyPos;
-	if (!GetEmpty(table, emptypos)) { // если пустого места нет то квадрат заполнен
-		// если текущая раскладка лучшая то запоминаем ее
-		if (list.size() < res.size() || res.size() == 0) res = list;
-		// запоминаем размер последнего элемента из раскладки
-		auto lastSize = list.back().w;
-		// удаляем последний элемент из раскладки
-		RemoveLast(table, list);
-	}*/
+	// ограничитель
+	if (IsFull(table, N) || !CanAdd(table, N, item)) return false;
+
+	// вставка итема
+	Add(table, list, item);
+
+	// берем индекс первого пустого места
+	Position position;
+	if (GetFirstEmpty(table, N, position)) {
+		// поиск макс размера // todo это оптимизация, которую нужно доделать
+		if (N - item.w < nMax) 
+			nMax = N - item.w;
+		// делаем вставку всех итемов, которые возможны
+		for (int i = 1; i < nMax; ++i) {
+			PutItem(Item(position.x, position.y, i), table, N, list, res, nMax);
+		}
+	}
+	else { // если попали сюда, то доска стала заполненой - проверяем результат
+		if (list.size() < res.size() || res.size() == 0) 
+			res = list;
+	}
+
+	// удаление итема
+	RemoveLast(table, list);
+
+	return true;
 
 	// тест вставки
-	Add(table, list, Item(0, 0, 2));
+	/*Add(table, list, Item(0, 0, 2));
 	Add(table, list, Item(3, 3, 3));
 	Add(table, list, Item(0, 3, 1));
-	ShowTable(table, N);
+	ShowTable(table, N);*/
+}
+bool GetFirstEmpty(bool** table, int N, Position& position) // возвращает первую свободную позицию
+{
+	for (int x = 0; x < N; ++x)
+		for (int y = 0; y < N; ++y)
+			if (!table[x][y]) {
+				position.x = x;
+				position.y = y;
+				return true;
+			}
+	return false;
+}
+bool CanAdd(bool** table, int N, Item item) // можно ли добавить указанный итем в таблицу
+{
+	if (item.x < 0 || item.x + item.w > N) return false;
+	if (item.y < 0 || item.y + item.w > N) return false;
 
-	// тест удаления
+	for (int x = item.x; x < item.x + item.w; ++x)
+		for (int y = item.y; y < item.y + item.w; ++y)
+			if(table[x][y]) return false;
+	return true;
+}
+bool IsFull(bool** table, int N) // заполнена ли таблица
+{
+	for (int x = 0; x < N; ++x)
+		for (int y = 0; y < N; ++y)
+			if (!table[x][y]) return false;
+	return true;
 }
 void Add(bool** table, std::list<Item>& list, Item item) // добавляет указанный обрезок в раскладку
 {
@@ -108,13 +155,13 @@ void Add(bool** table, std::list<Item>& list, Item item) // добавляет указанный 
 void RemoveLast(bool** table, std::list<Item>& list) // удаляет последний элемент из раскладки
 {
 	// берем последний элемент
-	auto last = list.back();
+	auto item = list.back();
 	list.pop_back();
 
 	// чистим таблицу
-	for (int i = last.x; i < last.w; ++i)
-		for (int j = last.y; j < last.w; ++j)
-			table[i][j] = false;
+	for (int x = item.x; x < item.x + item.w; ++x)
+		for (int y = item.y; y < item.y + item.w; ++y)
+			table[x][y] = false;
 }
 void ShowTable(bool** table, int N) // вывод таблицы на экран (для дебага)
 {
